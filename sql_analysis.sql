@@ -30,3 +30,24 @@ JOIN `silken-forest-466023-a2.uber_data_engineering.dropoff_location_dim` dro ON
 JOIN `silken-forest-466023-a2.uber_data_engineering.payment_type_dim` pay ON pay.payment_type_id=f.payment_type_id)
 ;
 
+--Top 10 pickup locations based on the number of trips
+SELECT pickup_location_id, COUNT(*) AS trip_count
+FROM `silken-forest-466023-a2.uber_data_engineering.fact_table`
+GROUP BY pickup_location_id
+ORDER BY trip_count DESC
+LIMIT 10;
+
+--Total number of trips by passenger count
+SELECT passenger_count, count(*) AS num_trips
+FROM `silken-forest-466023-a2.uber_data_engineering.fact_table` f
+JOIN `silken-forest-466023-a2.uber_data_engineering.passenger_count_dim` p ON p.passenger_count_id=f.passenger_count_id 
+GROUP BY p.passenger_count
+ORDER BY num_trips DESC;
+
+--Average fare amount by hour of the day
+SELECT dt.pick_hour, ROUND(AVG(f.fare_amount),2) AS avg_fare_amt
+FROM `silken-forest-466023-a2.uber_data_engineering.fact_table` f
+JOIN `silken-forest-466023-a2.uber_data_engineering.datetime_dim` dt
+ON dt.datetime_id = f.datetime_id
+GROUP BY dt.pick_hour
+ORDER BY dt.pick_hour;
