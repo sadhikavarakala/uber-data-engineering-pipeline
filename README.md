@@ -42,7 +42,7 @@ flowchart LR
 ---
 
 ## Data Model
-<img width="1480" height="1171" alt="Data Model" src="https://github.com/user-attachments/assets/d8125a11-cb3d-4566-9823-3ce227792f58" />
+<img width="1480" height="1171" alt="Data Model" src="https://github.com/user-attachments/assets/21706dfb-5e73-47df-824d-4ac1bacce912" />
 
 ---
 
